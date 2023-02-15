@@ -38,15 +38,10 @@
         </style>    
     </head>
     <body>
-        <jsp:include page="menu.jsp"></jsp:include>
+        
             <h2> :Employee List:</h2>
-        <c:set var="msg" value="${SuccessMsg2}"/>
-        <c:if test="${msg!=null}">
-            <div class="alert alert-success msg_style" role="alert">
-                <c:out value="${msg}"/>
-            </div>
-        </c:if>
-        <table id="example" class="table table-striped border" id="table">
+        
+        <table id="example" class="table table-striped border" >
             <thead>
                 <tr class="table-striped table-primary">
                     <th>Employee Id</th>

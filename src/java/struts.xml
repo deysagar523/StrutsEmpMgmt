@@ -6,9 +6,13 @@
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
         <action name="Login" class="com.exavalu.models.User" method="doLogin">
-            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="SUCCESS">newLandingPage.jsp</result>
             <result name="FAILURE">login.jsp</result>
-        </action>    
+        </action>   
+        <action name="ConsumeAPI" class="com.exavalu.models.APIUser" method="getDataFromAPI"> 
+            <result name="SUCCESS">printJsonObject.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action> 
         <action name="Logout" class="com.exavalu.models.User" method="doLogout">
             <result name="SUCCESS">landingPage.jsp</result>
             <result name="FAILURE">employeeDetails.jsp</result>
@@ -18,7 +22,7 @@
             <result name="FAILURE">signup.jsp</result>
         </action>    
         <action name="AddEmployee" class="com.exavalu.models.Employee" method="addEmployee">
-            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="SUCCESS">newLandingPage.jsp</result>
             <result name="FAILURE">addemployee.jsp</result>
         </action> 
         <action name="SearchEmployees" class="com.exavalu.models.Employee" method="searchEmployees">
@@ -32,5 +36,16 @@
             <result name="SUCCESS">employeeDetails.jsp</result>
              <result name="FAILURE">editemployee.jsp</result>
         </action>
+        <action name="PreSignUp" class="com.exavalu.models.User" method="doPreSignUp">
+            <result name="SUCCESS">signup.jsp</result>
+            <result name="STATELIST">stateList.jsp</result>
+            <result name="DISTLIST">distList.jsp</result>
+        </action>
+        <action name="Show" class="com.exavalu.models.Employee" method="getAllEmployees">
+            <result name="SHOW">employeeDetails.jsp</result>
+            
+        </action>
+       
+        
     </package>
 </struts>

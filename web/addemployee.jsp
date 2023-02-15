@@ -28,7 +28,7 @@
         </style>
     </head>
     <body class="text-center">
-        <jsp:include page="menu.jsp"></jsp:include>
+       
             <main class="form-signin w-100 m-auto">
 
 

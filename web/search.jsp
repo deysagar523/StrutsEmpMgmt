@@ -32,7 +32,7 @@
         </style>
     </head>
     <body>
-        <jsp:include page="menu.jsp"></jsp:include>
+        
             <h1>Search Employee</h1>
             <form action="SearchEmployees" method="post" class="form_style">
                 <div class="filed_style">

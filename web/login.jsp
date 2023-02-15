@@ -19,20 +19,15 @@
                 <img class="mb-4" src="images/flower-logo.jpg" alt="" width="200" height="200">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-                <c:set var="msg" value="${ErrorMsg}"/>                   
-                <c:if test="${msg!=null}">
-                    <div class="alert alert-danger msg_style" role="alert">
-                        <c:out value="${msg}"/>
-                    </div>
-                </c:if>
                 
-                <c:set var="msg1" value="${SuccessMsg}"/>                   
-                <c:if test="${msg1!=null}">
+
+            
+
+                <c:if test="${SignUpSuccessMsg!=null}">
                     <div class="alert alert-success msg_style" role="alert">
-                        <c:out value="${msg1}"/>
+                        <c:out value="${SignUpSuccessMsg}"/>
                     </div>
                 </c:if>
-
                 <div class="form-floating">
                     <input name="emailAddress" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required="required">
                     <label for="floatingInput">Email address</label>

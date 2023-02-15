@@ -64,7 +64,7 @@ public class Employee extends ActionSupport implements ApplicationAware, Session
             String successMsg = "One Employee Added Successfully";
 
             sessionMap.put("EmpList", empList);
-            sessionMap.put("SuccessMsg2", successMsg);
+            sessionMap.put("SuccessMsgForAdd", successMsg);
 
             result = "SUCCESS";
         } else {
@@ -110,6 +110,18 @@ public class Employee extends ActionSupport implements ApplicationAware, Session
        return result;
 
     }
+    
+     public String getAllEmployees() throws Exception {
+        String result = "SHOW";
+        ArrayList empList = EmployeeService.getInstance().getAllEmployees();
+//        System.out.println("get all employees ="+empList.size());
+        sessionMap.put("EmpList", empList);
+        return result;
+       
+
+    }
+     
+   
 
     /**
      * @return the employeeId

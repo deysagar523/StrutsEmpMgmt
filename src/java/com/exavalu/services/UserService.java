@@ -4,12 +4,16 @@
  */
 package com.exavalu.services;
 
+import com.exavalu.models.Country;
+import com.exavalu.models.District;
+import com.exavalu.models.State;
 import com.exavalu.models.User;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,8 +69,8 @@ public class UserService {
 
     public boolean doSignup(User user) {
         boolean result = false;
-        String sql = "INSERT INTO users (emailAddress,password,firstName,lastName,status)"
-                    + "VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO users (emailAddress,password,firstName,lastName,countryCode,stateCode,districtCode,status)"
+                    + "VALUES (?,?,?,?,?,?,?,?)";
         try {
 
             Connection con = JDBCConnectionManager.getConnection();
@@ -79,7 +83,10 @@ public class UserService {
 
             preparedStatement.setString(3, user.getFirstName());
             preparedStatement.setString(4, user.getLastName());
-            preparedStatement.setInt(5, 1);
+            preparedStatement.setString(5, user.getCountryCode());
+            preparedStatement.setString(6, user.getStateCode());
+            preparedStatement.setString(7, user.getDistCode());
+            preparedStatement.setInt(8, 1);
 
             int row = preparedStatement.executeUpdate();
             if (row == 1) {
@@ -116,5 +123,105 @@ public class UserService {
 
        
         return user;
+    }
+
+    public ArrayList getAllCountries() {
+       ArrayList cnList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "Select * from countries";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Country cn = new Country();
+                cn.setCountryCode(rs.getString("countryCode"));
+                
+                cn.setCountryName(rs.getString("countryName"));
+
+                cnList.add(cn);
+               
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        System.out.println("country List size ="+cnList.size());
+        return cnList;
+    }
+
+    public ArrayList getAllStates(String countryCode) {
+      ArrayList stateList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "Select * from states where countryCode=? ";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, countryCode);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                
+                
+                State state=new State();
+                state.setStateCode(rs.getString("stateCode"));
+               
+                
+                state.setStateName(rs.getString("stateName"));
+
+                state.setCountryCode(rs.getString("countryCode"));
+                stateList.add(state);
+               
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        System.out.println("state  list size="+stateList.size());
+        return stateList;
+    }
+
+    public ArrayList getAlldistricts(String stateCode) {
+       ArrayList distList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+
+            String sql = "Select * from districts where stateCode=? ";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, stateCode);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                
+                
+                District dist = new District();
+                dist.setDistCode(rs.getString("distCode"));
+                 dist.setDistName(rs.getString("distName"));
+                  dist.setStateCode(rs.getString("stateCode"));
+                distList.add(dist);
+               
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        System.out.println("district   list size="+distList.size());
+        return distList;
     }
 }

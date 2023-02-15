@@ -21,6 +21,7 @@ public class Department extends ActionSupport implements ApplicationAware, Sessi
      private int departmentId;
     private String departmentName;
 
+    //private ArrayList<Role> roles;
     
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
