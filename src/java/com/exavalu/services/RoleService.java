@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -40,6 +42,8 @@ public class RoleService {
             }
 
         } catch (SQLException ex) {
+           Logger log=Logger.getLogger(RoleService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
             ex.printStackTrace();
         }
 

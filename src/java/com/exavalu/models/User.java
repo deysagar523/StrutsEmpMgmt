@@ -10,8 +10,10 @@ import com.exavalu.services.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -58,6 +60,9 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         } else {
             System.out.println("returning Failure from doLogin method");
             String errorMsg = "Either EmailAddress or Password is wrong";
+            Logger log=Logger.getLogger(User.class.getName());
+            log.error(LocalDateTime.now()+"Either EmailAddress or Password is wrong");
+
             getSessionMap().put("ErrorMsg", errorMsg);
         }
 
@@ -153,6 +158,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
               String errorMsg = "This Email is already registered..Try with another Email";
 
                 sessionMap.put("SignUpFailureMsg", errorMsg);
+                 Logger log=Logger.getLogger(User.class.getName());
+            log.error(LocalDateTime.now()+"This Email is already registered..Try with another Email");
         }
        
         return result;

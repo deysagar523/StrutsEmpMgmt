@@ -13,10 +13,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -93,13 +95,17 @@ public class APIService {
                     System.out.println("Size of User List"+apiUsers.size());
                 }
 
-	  } catch (MalformedURLException e) {
+	  } catch (MalformedURLException ex) {
 
-		e.printStackTrace();
+		Logger log=Logger.getLogger(APIService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
+            ex.printStackTrace();
 
-	  } catch (IOException e) {
+	  } catch (IOException ex) {
 
-		e.printStackTrace();
+		Logger log=Logger.getLogger(APIService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
+            ex.printStackTrace();
 
 	  }
          return apiUsers;
@@ -142,8 +148,10 @@ public class APIService {
                 
                 
                 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+          Logger log=Logger.getLogger(APIService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
+            ex.printStackTrace();
         }
         
         return result;

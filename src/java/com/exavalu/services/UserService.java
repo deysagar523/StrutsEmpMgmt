@@ -13,9 +13,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -60,6 +62,8 @@ public class UserService {
             }
             
         } catch (SQLException ex) {
+           Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
             ex.printStackTrace();
         }
         
@@ -93,7 +97,9 @@ public class UserService {
                 result = true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
+            ex.printStackTrace();
         }
 
         return result;
@@ -119,6 +125,9 @@ public class UserService {
 
         } catch (SQLException ex) {
 
+            Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
+            ex.printStackTrace();
         }
 
        
@@ -149,6 +158,8 @@ public class UserService {
             }
 
         } catch (SQLException ex) {
+            Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
             ex.printStackTrace();
         }
 
@@ -185,6 +196,8 @@ public class UserService {
             }
 
         } catch (SQLException ex) {
+           Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
             ex.printStackTrace();
         }
 
@@ -218,6 +231,8 @@ public class UserService {
             }
 
         } catch (SQLException ex) {
+          Logger log=Logger.getLogger(UserService.class.getName());
+            log.error(LocalDateTime.now()+ "@"+ex);
             ex.printStackTrace();
         }
 
